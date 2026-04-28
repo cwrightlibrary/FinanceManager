@@ -35,4 +35,4 @@ From here, setup your profile and add bank accounts, income, loans, and bills. Y
 
 ## Preview
 
-
+https://github.com/user-attachments/assets/c59a4327-e55c-47fa-9183-0cc57f5f5250
