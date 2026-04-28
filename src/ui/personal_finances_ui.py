@@ -331,9 +331,9 @@ class PersonalFinances:
 
     def setup_profile(self) -> None:
         if not self.profile:
-            st.title("➕ Setup Account")
+            st.title("➕ Setup Profile")
         else:
-            st.title("✏️ Edit Account")
+            st.title("✏️ Edit Profile")
 
         info_tab, accounts_tab, incomes_tab, loans_tab, bills_tab = st.tabs(
             ["Info", "Bank Accounts", "Income", "Loans", "Bills"]
