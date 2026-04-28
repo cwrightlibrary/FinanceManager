@@ -262,7 +262,7 @@ class PersonalFinances:
                 income_str = (
                     f"You earn **${round(self.profile.monthly_income(), 2):,.2f}** {num_income}"
                     if len(self.profile.income) > 1
-                    else f"You earn **${round(self.profile.monthly_income(), 2)}** from one income stream"
+                    else f"You earn **${round(self.profile.monthly_income(), 2):,.2f}** from one income stream"
                 )
 
                 st.success(income_str)

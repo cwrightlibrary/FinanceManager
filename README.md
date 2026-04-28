@@ -32,3 +32,7 @@ A finances manager with a dashboard and loan payment simulation.
 - Visit `http://localhost:8501` in your browser
 
 From here, setup your profile and add bank accounts, income, loans, and bills. You'll have a dashboard view of your finances and a *Debt Wizard* simulator to help you plan off your loans.
+
+## Preview
+
+
