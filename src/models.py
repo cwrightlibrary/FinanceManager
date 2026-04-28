@@ -121,7 +121,7 @@ class Income(BaseModel):
     def monthly_amount(self) -> Decimal:
         annual_salary = self.amount * 26
         monthly_pay = annual_salary / 12
-        return monthly_pay
+        return round(monthly_pay, 2)
 
 
 class TaxSystem(BaseModel):
@@ -362,7 +362,8 @@ class DebtRepaymentProfile(Profile):
                                 break
 
             if (
-                debts_to_pay[0].amount <= 0
+                len(debts_to_pay) >= 2
+                and debts_to_pay[-2].amount <= 0
                 and debts_to_pay[-1].amount > 0
                 and self.last_debt_amount > debts_to_pay[-1].min
             ):

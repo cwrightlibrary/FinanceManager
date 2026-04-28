@@ -4,10 +4,8 @@ import streamlit as st
 
 from decimal import Decimal
 from enum import auto, Enum
-import pandas as pd
 from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
-from typing import cast, Literal
 
 from src.helpers.get_profile import GetProfile
 from src.helpers.str_to_num import str_to_num
@@ -15,7 +13,6 @@ from src.helpers.str_to_num import str_to_num
 from src.models import (
     BankAccount,
     Bill,
-    BillType,
     Debt,
     Income,
     Profile,
@@ -90,6 +87,8 @@ class PersonalFinances:
         self.load_account()
 
     def start_app(self) -> None:
+        with st.sidebar:
+            st.logo("🪙")
         dashboard_pg = st.Page(
             self.render_dashboard,
             title="Dashboard",
@@ -111,7 +110,7 @@ class PersonalFinances:
             "Developer Tools": [playground_pg],
         }
 
-        pg = st.navigation(pages)
+        pg = st.navigation(pages, expanded=2)
 
         pg.run()
 
@@ -138,51 +137,6 @@ class PersonalFinances:
         self.state.active_mode = mode
         self.state.run_count += 1
         st.rerun()
-
-    def render_sidebar(self) -> None:
-        with st.sidebar:
-            st.title(f"👋 Welcome, {self.state.user_name}")
-
-            if self.state.user_name == "Guest":
-                st.info("Please setup your profile")
-            else:
-                st.caption("Manage your profile")
-
-            if st.button("📊 Dashboard"):
-                self.emit_event(AppMode.DASHBOARD)
-            if self.profile:
-                if st.button("✏️ Edit Account"):
-                    self.emit_event(AppMode.SETUP_PROFILE)
-            else:
-                if st.button("➕ Setup Account"):
-                    self.emit_event(AppMode.SETUP_PROFILE)
-
-            st.divider()
-
-            st.title("💳 Debt Wizard")
-            st.caption("Manage your debt")
-
-            if st.button("💫 Simulate"):
-                self.emit_event(AppMode.DEBT_WIZARD)
-
-            st.divider()
-
-            with st.expander("Other Options"):
-                upload_profile = st.file_uploader(
-                    "Replace profile", accept_multiple_files=False, type="json"
-                )
-                if upload_profile is not None:
-                    json_profile = json.load(upload_profile)
-                    with open(".user_profile.json", "w", encoding="utf-8") as f:
-                        json.dump(json_profile, f)
-                        st.rerun()
-
-                self.state.debug_mode = st.toggle(
-                    "Enable Debug Mode", value=self.state.debug_mode
-                )
-
-                if self.state.debug_mode:
-                    st.json(self.state.model_dump())
 
     def render_dashboard(self) -> None:
         st.title("📊 Dashboard")
@@ -335,6 +289,10 @@ class PersonalFinances:
                 )
 
     def setup_profile(self) -> None:
+        if "show_toast" in st.session_state:
+            st.toast(st.session_state["show_toast"])
+            del st.session_state["show_toast"]
+
         if not self.profile:
             st.title("➕ Setup Profile")
         else:
@@ -345,6 +303,8 @@ class PersonalFinances:
         )
 
         with info_tab:
+            st.header("Info")
+
             new_user_name = (
                 st.text_input("Name")
                 if not self.profile
@@ -352,16 +312,10 @@ class PersonalFinances:
             )
 
             if self.profile:
-                self.profile.name = new_user_name
-                profile_json_string = self.profile.model_dump_json(
-                    exclude={"logs"}, indent=4
-                )
-                st.download_button(
-                    label="Download profile json",
-                    data=profile_json_string,
-                    file_name="user_profile.json",
-                    mime="application/json",
-                )
+                if st.button("Update Name", type="primary"):
+                    self.profile.name = new_user_name
+                    self.save_current()
+                    st.rerun()
             elif (
                 st.session_state.accounts
                 and st.session_state.incomes
@@ -404,287 +358,295 @@ class PersonalFinances:
                     json.dump(json_profile, f)
                     st.rerun()
 
+            if self.profile:
+                st.header("Export")
+
+                profile_json_string = self.profile.model_dump_json(
+                    exclude={"logs"}, indent=4
+                )
+                st.download_button(
+                    label="Export Profile",
+                    data=profile_json_string,
+                    file_name="user_profile.json",
+                    mime="application/json",
+                )
+
         with accounts_tab:
             st.header("Bank Accounts")
-
-            if st.button("Add bank account"):
-                self.add_bank_account()
-
             if self.accounts:
-                with st.expander("Added accounts", expanded=True):
-                    head_col1, head_col2, head_col3, head_col4 = st.columns(
-                        [3, 2, 2, 1]
-                    )
-                    head_col1.write("**Bank name**")
-                    head_col2.write("**Type**")
-                    head_col3.write("**Amount**")
-                    head_col4.write("**Remove**")
-                    st.divider()
+                account_types = ["Checking", "Saving"]
+                accounts_table = [
+                    {
+                        "Bank name": acc.name,
+                        "Type": acc.account_type,
+                        "Amount": str(acc.amount),
+                        "Remove": False,
+                    }
+                    for acc in self.accounts
+                ]
+                df_accounts = pd.DataFrame(accounts_table)
+                acc_key = f"accounts_editor_{self.state.run_count}"
+                edited_df = st.data_editor(
+                    df_accounts,
+                    key=acc_key,
+                    hide_index=True,
+                    column_config={
+                        "Bank name": st.column_config.TextColumn(default="Bank"),
+                        "Type": st.column_config.SelectboxColumn(
+                            "Account Category",
+                            options=account_types,
+                            required=True,
+                        ),
+                        "Amount": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Remove": st.column_config.CheckboxColumn(),
+                    },
+                    width="stretch",
+                    num_rows="add",
+                )
 
-                    for idx, acc in enumerate(self.accounts):
-                        col1, col2, col3, col4 = st.columns([3, 2, 2, 1])
-
-                        col1.text(acc.name)
-                        col2.text(acc.account_type)
-                        col3.text(f"${acc.amount:,.2f}")
-
-                        if col4.button("X", key=f"del_acc_{idx}", type="primary"):
-                            self.accounts.pop(idx)
-                            if self.profile:
-                                self.profile.bank_accounts = self.accounts
-
-                            self.save_current()
-                            st.rerun()
+                if st.button("Update Accounts", type="primary"):
+                    final_df = edited_df[~edited_df["Remove"]].copy()
+                    new_accounts_list = []
+                    for _, row in final_df.iterrows():
+                        name = (
+                            str(row["Bank name"]).strip()
+                            if not pd.isna(row["Bank name"])
+                            else "Bank"
+                        )
+                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
+                        new_accounts_list.append(
+                            BankAccount(
+                                name=name,
+                                account_type=row["Type"],
+                                amount=Decimal(str(round(amt, 2))),
+                            )
+                        )
+                    self.accounts = new_accounts_list
+                    if self.profile:
+                        self.profile.bank_accounts = self.accounts
+                    self.save_current()
+                    st.session_state["show_toast"] = "Updated accounts"
+                    st.rerun()
             else:
                 st.info("No accounts added")
 
         with incomes_tab:
             st.header("Income")
-
-            if st.button("Add income"):
-                self.add_income()
-
             if self.incomes:
-                with st.expander("Added accounts", expanded=True):
-                    head_col1, head_col2, head_col3 = st.columns([3, 2, 1])
-                    head_col1.write("**Source of income**")
-                    head_col2.write("**Monthly pay ($)**")
-                    head_col3.write("**Remove**")
-                    st.divider()
+                incomes_table = [
+                    {
+                        "Source of income": inc.income_name,
+                        "Biweekly pay": str(inc.amount),
+                        "Remove": False,
+                    }
+                    for inc in self.incomes
+                ]
+                df_incomes = pd.DataFrame(incomes_table)
+                inc_key = f"incomes_editor_{self.state.run_count}"
+                edited_df = st.data_editor(
+                    df_incomes,
+                    key=inc_key,
+                    hide_index=True,
+                    column_config={
+                        "Source of income": st.column_config.TextColumn(default="Job"),
+                        "Biweekly pay": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Remove": st.column_config.CheckboxColumn(),
+                    },
+                    width="stretch",
+                    num_rows="add",
+                )
 
-                    for idx, income in enumerate(self.incomes):
-                        col1, col2, col3 = st.columns([3, 2, 1])
-
-                        col1.text(income.income_name)
-                        col2.text(f"${income.monthly_amount:,.2f}")
-
-                        if col3.button("X", key=f"del_income_{idx}", type="primary"):
-                            self.incomes.pop(idx)
-                            if self.profile:
-                                self.profile.income = self.incomes
-
-                            self.save_current()
-                            st.rerun()
+                if st.button("Update Income", type="primary"):
+                    final_df = edited_df[~edited_df["Remove"]].copy()
+                    new_incomes_list = []
+                    for _, row in final_df.iterrows():
+                        name = (
+                            str(row["Source of income"]).strip()
+                            if not pd.isna(row["Source of income"])
+                            else "Job"
+                        )
+                        amt = pd.to_numeric(row["Biweekly pay"], errors="coerce") or 0.0
+                        new_incomes_list.append(
+                            Income(
+                                income_name=name,
+                                amount=Decimal(str(round(amt, 2))),
+                            )
+                        )
+                    self.incomes = new_incomes_list
+                    if self.profile:
+                        self.profile.income = self.incomes
+                    self.save_current()
+                    st.session_state["show_toast"] = "Updated income"
+                    st.rerun()
             else:
                 st.info("No income streams added")
 
         with loans_tab:
             st.header("Loans")
-
-            if st.button("Add loan"):
-                self.add_loan()
-
             if self.debts:
-                with st.expander("Added loans", expanded=True):
-                    head_col1, head_col2, head_col3, head_col4, head_col5 = st.columns(
-                        [5, 4, 3, 2, 2]
-                    )
-                    head_col1.write("**Debtor**")
-                    head_col2.write("**Amount**")
-                    head_col3.write("**APR**")
-                    head_col4.write("**Minimum Payment**")
-                    head_col5.write("**Remove**")
-                    st.divider()
+                debt_table = [
+                    {
+                        "Debtor": d.name,
+                        "Amount": str(d.amount),
+                        "APR": str(d.apr),
+                        "Min payment": d.min,
+                        "Remove": False,
+                    }
+                    for d in self.debts
+                ]
+                df_debts = pd.DataFrame(debt_table)
+                debt_key = f"debts_editor_{self.state.run_count}"
+                edited_df = st.data_editor(
+                    df_debts,
+                    key=debt_key,
+                    hide_index=True,
+                    column_config={
+                        "Debtor": st.column_config.TextColumn(default="Debtor"),
+                        "Amount": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "APR": st.column_config.NumberColumn(
+                            format="%.4f", default=0.05
+                        ),
+                        "Min payment": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Remove": st.column_config.CheckboxColumn(),
+                    },
+                    width="stretch",
+                    num_rows="add",
+                )
 
-                    for idx, loan in enumerate(self.debts):
-                        col1, col2, col3, col4, col5 = st.columns([5, 4, 3, 2, 2])
-
-                        col1.text(loan.name)
-                        col2.text(f"${loan.amount:,.2f}")
-                        col3.text(loan.apr)
-                        col4.text(f"${loan.min:,.2f}")
-
-                        if col5.button("X", key=f"del_debt_{idx}", type="primary"):
-                            self.debts.pop(idx)
-                            if self.profile:
-                                self.profile.debts = self.debts
-
-                            self.save_current()
-                            st.rerun()
+                if st.button("Update Debt", type="primary"):
+                    final_df = edited_df[~edited_df["Remove"]].copy()
+                    new_debts_list = []
+                    for _, row in final_df.iterrows():
+                        name = (
+                            str(row["Debtor"]).strip()
+                            if not pd.isna(row["Debtor"])
+                            else "Debtor"
+                        )
+                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
+                        apr = pd.to_numeric(row["APR"], errors="coerce") or 0.05
+                        mp = pd.to_numeric(row["Min payment"], errors="coerce") or 0.0
+                        new_debts_list.append(
+                            Debt(
+                                name=name,
+                                amount=Decimal(str(round(amt, 2))),
+                                apr=Decimal(str(round(apr, 4))),
+                                min=Decimal(str(round(mp, 2))),
+                            )
+                        )
+                    self.debts = new_debts_list
+                    if self.profile:
+                        self.profile.debts = self.debts
+                    self.save_current()
+                    st.session_state["show_toast"] = "Updated debts"
+                    st.rerun()
             else:
                 st.info("No loans added")
 
         with bills_tab:
             st.header("Bills")
-
-            if st.button("Add bill"):
-                self.add_bill()
-
             if self.bills:
-                with st.expander("Added bills", expanded=True):
-                    head_col1, head_col2, head_col3, head_col4, head_col5 = st.columns(
-                        [5, 4, 3, 2, 2]
-                    )
-                    head_col1.write("**Billing Entity**")
-                    head_col2.write("**Type**")
-                    head_col3.write("**Amount**")
-                    head_col4.write("Range")
-                    head_col5.write("Remove")
+                bill_types = [
+                    "Internet",
+                    "Utilities",
+                    "Groceries",
+                    "Phones",
+                    "Games",
+                    "Music",
+                    "Entertainment",
+                    "Daycare",
+                    "Rent",
+                    "Extra spending",
+                ]
+                bills_table = [
+                    {
+                        "Billing entity": b.name,
+                        "Type": b.bill_type,
+                        "Amount": float(b.amount) if b.amount else 0.0,
+                        "Min amount": float(b.amount_range[0])
+                        if b.amount_range
+                        else 0.0,
+                        "Max amount": float(b.amount_range[1])
+                        if b.amount_range
+                        else 0.0,
+                        "Remove": False,
+                    }
+                    for b in self.bills
+                ]
+                df_bills = pd.DataFrame(bills_table)
+                bill_key = f"bills_editor_{self.state.run_count}"
+                edited_df = st.data_editor(
+                    df_bills,
+                    key=bill_key,
+                    hide_index=True,
+                    column_config={
+                        "Billing entity": st.column_config.TextColumn(
+                            default="New Bill"
+                        ),
+                        "Type": st.column_config.SelectboxColumn(
+                            "Bill Category", options=bill_types, required=True
+                        ),
+                        "Amount": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Min amount": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Max amount": st.column_config.NumberColumn(
+                            format="$%,.2f", default=0.0
+                        ),
+                        "Remove": st.column_config.CheckboxColumn(),
+                    },
+                    width="stretch",
+                    num_rows="add",
+                )
 
-                    for idx, bill in enumerate(self.bills):
-                        col1, col2, col3, col4, col5 = st.columns([5, 4, 3, 2, 2])
-
-                        col1.text(bill.name)
-                        col2.text(bill.bill_type)
-                        col3.write(f"{bill.amount:,.2f}")
-                        col4.write("✅") if bill.randomize else col4.write("❌")
-
-                        if col5.button("X", key=f"del_bill_{idx}", type="primary"):
-                            self.bills.pop(idx)
-                            if self.profile:
-                                self.profile.bills = self.bills
-
-                            self.save_current()
-                            st.rerun()
+                if st.button("Update Bills", type="primary"):
+                    final_df = edited_df[~edited_df["Remove"]].copy()
+                    new_bills_list = []
+                    for _, row in final_df.iterrows():
+                        name = (
+                            str(row["Billing entity"]).strip()
+                            if not pd.isna(row["Billing entity"])
+                            else "New Bill"
+                        )
+                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
+                        mi = pd.to_numeric(row["Min amount"], errors="coerce") or 0.0
+                        ma = pd.to_numeric(row["Max amount"], errors="coerce") or 0.0
+                        has_range = mi > 0 and ma > 0
+                        new_bills_list.append(
+                            Bill(
+                                name=name,
+                                bill_type=row["Type"],
+                                amount=Decimal(str(round(amt, 2)))
+                                if not has_range
+                                else Decimal("0"),
+                                amount_range=(
+                                    (
+                                        Decimal(str(round(mi, 2))),
+                                        Decimal(str(round(ma, 2))),
+                                    )
+                                )
+                                if has_range
+                                else None,
+                                randomize=has_range,
+                            )
+                        )
+                    self.bills = new_bills_list
+                    if self.profile:
+                        self.profile.bills = self.bills
+                    self.save_current()
+                    st.session_state["show_toast"] = "Updated bills"
+                    st.rerun()
             else:
                 st.info("No bills added")
-
-    @st.dialog("Add bank account")
-    def add_bank_account(self) -> None:
-        with st.form("add_account"):
-            st.write("Add Account")
-            account_name = st.text_input("Account name")
-            account_type: Literal["Checking", "Saving"] = "Checking"
-
-            account_type_selector = st.radio(
-                "Account type", options=["Checking", "Saving"]
-            )
-
-            if account_type_selector == "Checking":
-                account_type = "Checking"
-            else:
-                account_type = "Saving"
-
-            account_amount = Decimal(
-                str(
-                    st.number_input(
-                        "Amount in account ($)",
-                        0.0,
-                        100000.0,
-                        step=0.01,
-                        format="%0.2f",
-                    )
-                )
-            )
-
-            add_account = st.form_submit_button("Add")
-
-            if add_account:
-                acc = BankAccount(
-                    name=account_name, account_type=account_type, amount=account_amount
-                )
-
-                st.session_state.accounts.append(acc)
-                if self.profile:
-                    self.profile.bank_accounts.append(acc)
-
-                self.save_current()
-                st.rerun()
-
-    @st.dialog("Add income")
-    def add_income(self) -> None:
-        with st.form("add_income"):
-            st.write("Add Income")
-            name = st.text_input("Source of income")
-            amount = Decimal(st.number_input("Bi-weekly amount ($)", 0))
-
-            add_income = st.form_submit_button("Add")
-
-            if add_income:
-                income = Income(income_name=name, amount=amount)
-
-                st.session_state.incomes.append(income)
-                if self.profile:
-                    self.profile.income.append(income)
-
-                self.save_current()
-                st.rerun()
-
-    @st.dialog("Add loan")
-    def add_loan(self) -> None:
-        with st.form("add_loan"):
-            st.write("Add Loan")
-            name = st.text_input("Provider")
-            amount = Decimal(st.number_input("Balance of loan ($)", 0))
-            apr = Decimal(
-                str(st.number_input("APR", 0.000, 1.000, step=0.001, format="%0.3f"))
-            )
-            min_pay = Decimal(st.number_input("Minimum payment", 0))
-
-            add_loan = st.form_submit_button("Add")
-
-            if add_loan:
-                debt = Debt(name=name, amount=amount, apr=apr, min=min_pay)
-
-                st.session_state.debts.append(debt)
-                if self.profile:
-                    self.profile.debts.append(debt)
-
-                self.save_current()
-                st.rerun()
-
-    @st.dialog("Add bill")
-    def add_bill(self) -> None:
-        randomize = st.checkbox("Randomize with range", value=False)
-
-        with st.form("add_bill_form"):
-            st.write("Add bill details")
-            name = st.text_input("Billing entity")
-
-            options: list[BillType] = [
-                "Internet",
-                "Utilities",
-                "Groceries",
-                "Phones",
-                "Games",
-                "Music",
-                "Entertainment",
-                "Daycare",
-                "Rent",
-                "Extra spending",
-            ]
-            selected_type = st.selectbox("Bill type", options=options)
-            bill_type = cast(BillType, selected_type)
-
-            bill_amount = Decimal("0.00")
-            bill_range = None
-
-            if randomize:
-                col1, col2 = st.columns(2)
-                with col1:
-                    low = st.number_input(
-                        "Low Range ($)", 0.0, step=0.01, format="%0.2f"
-                    )
-                with col2:
-                    high = st.number_input(
-                        "High Range ($)", 0.0, step=0.01, format="%0.2f"
-                    )
-                bill_range = (Decimal(str(low)), Decimal(str(high)))
-            else:
-                amount_input = st.number_input(
-                    "Bill Amount ($)", 0.0, step=0.01, format="%0.2f"
-                )
-                bill_amount = Decimal(str(amount_input))
-
-            if st.form_submit_button("Add"):
-                if not name:
-                    st.error("Please enter a name.")
-                    return
-
-                new_bill = Bill(
-                    name=name,
-                    bill_type=bill_type,
-                    randomize=randomize,
-                    amount=bill_amount,
-                    amount_range=bill_range,
-                )
-
-                st.session_state.bills.append(new_bill)
-                if self.profile:
-                    self.profile.bills.append(new_bill)
-
-                self.save_current()
-                st.rerun()
 
     def save_current(self) -> None:
         if Path(".user_profile.json").exists() and self.profile:
@@ -707,21 +669,6 @@ class PersonalFinances:
 
                 with st.container():
                     st.subheader("Loan Options")
-                    adjust_rent = st.number_input(
-                        label="Current Rent",
-                        format="%0.2f",
-                        value=round(float(self.profile.rent), 2),
-                    )
-
-                    if Decimal(str(adjust_rent)) != self.profile.rent:
-                        st.write("Yeh")
-                        self.profile.rent = Decimal(str(adjust_rent))
-                        for bill in self.profile.bills:
-                            if bill.bill_type == "Rent" and bill.amount:
-                                bill.amount = self.profile.rent
-                        for bill in st.session_state.bills:
-                            if bill.bill_type == "Rent" and bill.amount:
-                                bill.amount = self.profile.rent
 
                     col1, col2 = st.columns(2)
 
@@ -769,94 +716,18 @@ class PersonalFinances:
     def playground(self):
         st.title("🛝 Playground")
 
-        bills_tab, other_tab = st.tabs(["Bills", "Other"])
+        play_area_one, play_area_two, play_area_three = st.tabs(
+            ["Play Area 1", "Play Area 2", "Play Area 3"]
+        )
 
-        with bills_tab:
-            bill_types = [
-                "Internet", "Utilities", "Groceries", "Phones", 
-                "Games", "Music", "Entertainment", "Daycare", 
-                "Rent", "Extra spending"
-            ]
+        with play_area_one:
+            st.header("Play Area 1")
 
-            bills_table = []
-            for bill in self.bills:
-                bills_table.append({
-                    "Billing entity": bill.name,
-                    "Type": bill.bill_type,
-                    "Amount": float(bill.amount) if bill.amount else 0.0,
-                    "Min amount": float(bill.amount_range[0]) if bill.amount_range else 0.0,
-                    "Max amount": float(bill.amount_range[1]) if bill.amount_range else 0.0,
-                    "Remove": False,
-                })
+        with play_area_two:
+            st.header("Play Area 2")
 
-            df_bills = pd.DataFrame(bills_table)
-
-            # Keep the key consistent. 
-            # Note: Do not prepend "$" to the actual data values in the dict above.
-            edited_df = st.data_editor(
-                df_bills,
-                key="bills_editor",
-                hide_index=True,
-                column_config={
-                    "Billing entity": st.column_config.TextColumn(default="New Bill"),
-                    "Type": st.column_config.SelectboxColumn(
-                        "Bill Category",
-                        help="The category of the bill",
-                        width="medium",
-                        options=bill_types,
-                        required=True,
-                    ),
-                    "Amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
-                    "Min amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
-                    "Max amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
-                },
-                width="stretch",
-                num_rows="add",
-            )
-
-            if st.button("Update Bills", type="primary"):
-                editor_state = st.session_state["bills_editor"]
-
-                final_df = edited_df[(edited_df["Remove"] == False) | (edited_df["Remove"].isna())].copy()
-
-                new_bills_list = []
-                for _, row in final_df.iterrows():
-                    # Handle empty names in new rows
-                    raw_name = row["Billing entity"]
-                    if pd.isna(raw_name) or str(raw_name).strip() == "":
-                        name = "New Bill"
-                    else:
-                        name = str(raw_name)
-                    
-                    # Ensure numeric conversion safely
-                    amt = pd.to_numeric(row["Amount"], errors='coerce') or 0.0
-                    mi = pd.to_numeric(row["Min amount"], errors='coerce') or 0.0
-                    ma = pd.to_numeric(row["Max amount"], errors='coerce') or 0.0
-
-                    has_range = mi > 0 and ma > 0
-
-                    amount_range = (
-                        (Decimal(str(round(mi, 2))), Decimal(str(round(ma, 2))))
-                        if has_range else None
-                    )
-
-                    new_bill = Bill(
-                        name=name,
-                        bill_type=row["Type"],
-                        amount=Decimal(str(round(amt, 2))) if not has_range else Decimal("0"),
-                        amount_range=((Decimal(str(round(mi, 2))), Decimal(str(round(ma, 2))))),
-                        randomize=has_range,
-                    )
-                    new_bills_list.append(new_bill)
-                
-                # Update and Persist
-                self.bills = new_bills_list
-                if self.profile:
-                    self.profile.bills = self.bills
-                
-                self.save_current()
-                st.toast("Updated bills")
-                st.rerun()
+        with play_area_three:
+            st.header("Play Area 3")
 
     def load_account(self):
         if Path(".user_profile.json").exists():
@@ -872,7 +743,5 @@ class PersonalFinances:
                 self.bills = self.profile.bills
 
     def run(self) -> None:
-        self.render_sidebar()
-
         view_function = self.routes.get(self.state.active_mode, self.render_dashboard)
         view_function()
