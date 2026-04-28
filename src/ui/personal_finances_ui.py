@@ -348,6 +348,13 @@ class PersonalFinances:
 
             if self.profile:
                 self.profile.name = new_user_name
+                profile_json_string = self.profile.model_dump_json(exclude={"logs"}, indent=4)
+                st.download_button(
+                    label="Download profile json",
+                    data=profile_json_string,
+                    file_name="user_profile.json",
+                    mime="application/json"
+                )
             elif (
                 st.session_state.accounts
                 and st.session_state.incomes
