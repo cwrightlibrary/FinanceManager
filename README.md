@@ -33,6 +33,10 @@ A finances manager with a dashboard and loan payment simulation.
 
 From here, setup your profile and add bank accounts, income, loans, and bills. You'll have a dashboard view of your finances and a *Debt Wizard* simulator to help you plan off your loans.
 
+---
+
+The profile created will generate a file `.user_profile.json` with the appropriate information to import or edit at any time.
+
 ## Preview
 
-https://github.com/user-attachments/assets/c59a4327-e55c-47fa-9183-0cc57f5f5250
+https://github.com/user-attachments/assets/3dccbe99-6e3c-471c-8717-3b4567d4fad3
