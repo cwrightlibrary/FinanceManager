@@ -31,20 +31,53 @@
     ],
     "bills": [
         {
-            "name": "Home",
-            "bill_type": "Rent",
-            "randomize": false,
-            "amount": "4000.0",
-            "amount_range": null
+            "name": "Ranger",
+            "bill_type": "Phones",
+            "randomize": true,
+            "amount": "69.45",
+            "amount_range": [
+                "20.0",
+                "80.0"
+            ]
         },
         {
-            "name": "Food",
-            "bill_type": "Groceries",
-            "randomize": true,
-            "amount": "1072.72",
+            "name": "Tester",
+            "bill_type": "Internet",
+            "randomize": false,
+            "amount": "32.0",
             "amount_range": [
-                "900.0",
-                "1500.0"
+                "0.0",
+                "0.0"
+            ]
+        },
+        {
+            "name": "Another",
+            "bill_type": "Games",
+            "randomize": false,
+            "amount": "21.0",
+            "amount_range": [
+                "0.0",
+                "0.0"
+            ]
+        },
+        {
+            "name": "New Bill",
+            "bill_type": "Rent",
+            "randomize": false,
+            "amount": "1600.0",
+            "amount_range": [
+                "0.0",
+                "0.0"
+            ]
+        },
+        {
+            "name": "52",
+            "bill_type": "Entertainment",
+            "randomize": false,
+            "amount": "50.0",
+            "amount_range": [
+                "0.0",
+                "0.0"
             ]
         }
     ],
@@ -327,8 +360,3992 @@
             "last_debt_amount": "0.0",
             "rent": "4000.0",
             "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Home",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "4000.0",
+                    "amount_range": null
+                },
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": true,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "900.0",
+                        "1500.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": true,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "900.0",
+                        "1500.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "tast",
+                    "bill_type": "Internet",
+                    "randomize": true,
+                    "amount": "97.44",
+                    "amount_range": [
+                        "55.0",
+                        "99.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": null,
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "50.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": false,
+                    "amount": "1072.72",
+                    "amount_range": null
+                },
+                {
+                    "name": "Hole",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "845.11",
+                    "amount_range": null
+                },
+                {
+                    "name": "test",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "97.44",
+                    "amount_range": null
+                },
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": false,
+                    "amount": "50.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "50.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.00",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": null
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "30.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "56.0",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "4000.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "58.35",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Testsss",
+                    "bill_type": "Entertainment",
+                    "randomize": true,
+                    "amount": "55.21",
+                    "amount_range": [
+                        "25.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "59.66",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Testsss",
+                    "bill_type": "Entertainment",
+                    "randomize": true,
+                    "amount": "38.29",
+                    "amount_range": [
+                        "25.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "26.45",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Testsss",
+                    "bill_type": "Entertainment",
+                    "randomize": true,
+                    "amount": "49.76",
+                    "amount_range": [
+                        "25.0",
+                        "80.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "45.33",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "48.70",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
+        },
+        {
+            "name": "Karl",
+            "start_date": "2026-04-28T11:08:47.456630",
+            "current_date": "2026-04-28T11:08:47.456653",
+            "bank_accounts": [
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Checking",
+                    "amount": "15345.11"
+                },
+                {
+                    "name": "USAA",
+                    "account_type": "Saving",
+                    "amount": "20622.95"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "19331",
+                    "apr": "0.075",
+                    "min": "161"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Engels",
+                    "amount": "3215",
+                    "monthly_amount": "6965.833333333333333333333333"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Ranger",
+                    "bill_type": "Phones",
+                    "randomize": true,
+                    "amount": "39.13",
+                    "amount_range": [
+                        "20.0",
+                        "80.0"
+                    ]
+                },
+                {
+                    "name": "Tester",
+                    "bill_type": "Internet",
+                    "randomize": false,
+                    "amount": "32.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "Another",
+                    "bill_type": "Games",
+                    "randomize": false,
+                    "amount": "21.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                },
+                {
+                    "name": "New Bill",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.0",
+                    "amount_range": [
+                        "0.0",
+                        "0.0"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "800.0",
+            "last_debt_amount": "0.0",
+            "rent": "1600.0",
+            "total_tax": "0.00"
         }
     ],
-    "rent": "4000.0",
+    "rent": "1600.0",
     "total_tax": "0.00"
 }

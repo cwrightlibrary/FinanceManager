@@ -4,6 +4,7 @@ import streamlit as st
 
 from decimal import Decimal
 from enum import auto, Enum
+import pandas as pd
 from pathlib import Path
 from pydantic import BaseModel, ConfigDict, Field
 from typing import cast, Literal
@@ -27,6 +28,7 @@ class AppMode(Enum):
     SETUP_PROFILE = auto()
     DEBT_WIZARD = auto()
     OPTIONS = auto()
+    PLAYGROUND = auto()
 
 
 class AppState(BaseModel):
@@ -73,6 +75,7 @@ class PersonalFinances:
             AppMode.SETUP_PROFILE: self.setup_profile,
             AppMode.DEBT_WIZARD: self.simulate,
             AppMode.OPTIONS: self.preferences,
+            AppMode.PLAYGROUND: self.playground,
         }
 
         self.get_profile = GetProfile()
@@ -98,12 +101,14 @@ class PersonalFinances:
         profile_icon = "✏️" if self.profile else "➕"
         profile_pg = st.Page(self.setup_profile, title=profile_label, icon=profile_icon)
         options_pg = st.Page(self.preferences, title="Preferences", icon="⚙️")
+        playground_pg = st.Page(self.playground, title="Playground", icon="🛝")
 
         wizard_pg = st.Page(self.simulate, title="Simulate", icon="💫")
 
         pages = {
             f"Welcome, {self.state.user_name}": [dashboard_pg, profile_pg, options_pg],
             "Debt Wizard": [wizard_pg],
+            "Developer Tools": [playground_pg],
         }
 
         pg = st.navigation(pages)
@@ -348,12 +353,14 @@ class PersonalFinances:
 
             if self.profile:
                 self.profile.name = new_user_name
-                profile_json_string = self.profile.model_dump_json(exclude={"logs"}, indent=4)
+                profile_json_string = self.profile.model_dump_json(
+                    exclude={"logs"}, indent=4
+                )
                 st.download_button(
                     label="Download profile json",
                     data=profile_json_string,
                     file_name="user_profile.json",
-                    mime="application/json"
+                    mime="application/json",
                 )
             elif (
                 st.session_state.accounts
@@ -758,6 +765,98 @@ class PersonalFinances:
 
                     with st.expander("Details"):
                         st.markdown(instructions_str)
+
+    def playground(self):
+        st.title("🛝 Playground")
+
+        bills_tab, other_tab = st.tabs(["Bills", "Other"])
+
+        with bills_tab:
+            bill_types = [
+                "Internet", "Utilities", "Groceries", "Phones", 
+                "Games", "Music", "Entertainment", "Daycare", 
+                "Rent", "Extra spending"
+            ]
+
+            bills_table = []
+            for bill in self.bills:
+                bills_table.append({
+                    "Billing entity": bill.name,
+                    "Type": bill.bill_type,
+                    "Amount": float(bill.amount) if bill.amount else 0.0,
+                    "Min amount": float(bill.amount_range[0]) if bill.amount_range else 0.0,
+                    "Max amount": float(bill.amount_range[1]) if bill.amount_range else 0.0,
+                    "Remove": False,
+                })
+
+            df_bills = pd.DataFrame(bills_table)
+
+            # Keep the key consistent. 
+            # Note: Do not prepend "$" to the actual data values in the dict above.
+            edited_df = st.data_editor(
+                df_bills,
+                key="bills_editor",
+                hide_index=True,
+                column_config={
+                    "Billing entity": st.column_config.TextColumn(default="New Bill"),
+                    "Type": st.column_config.SelectboxColumn(
+                        "Bill Category",
+                        help="The category of the bill",
+                        width="medium",
+                        options=bill_types,
+                        required=True,
+                    ),
+                    "Amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
+                    "Min amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
+                    "Max amount": st.column_config.NumberColumn(format="$%,.2f", default=0.0),
+                },
+                width="stretch",
+                num_rows="add",
+            )
+
+            if st.button("Update Bills", type="primary"):
+                editor_state = st.session_state["bills_editor"]
+
+                final_df = edited_df[(edited_df["Remove"] == False) | (edited_df["Remove"].isna())].copy()
+
+                new_bills_list = []
+                for _, row in final_df.iterrows():
+                    # Handle empty names in new rows
+                    raw_name = row["Billing entity"]
+                    if pd.isna(raw_name) or str(raw_name).strip() == "":
+                        name = "New Bill"
+                    else:
+                        name = str(raw_name)
+                    
+                    # Ensure numeric conversion safely
+                    amt = pd.to_numeric(row["Amount"], errors='coerce') or 0.0
+                    mi = pd.to_numeric(row["Min amount"], errors='coerce') or 0.0
+                    ma = pd.to_numeric(row["Max amount"], errors='coerce') or 0.0
+
+                    has_range = mi > 0 and ma > 0
+
+                    amount_range = (
+                        (Decimal(str(round(mi, 2))), Decimal(str(round(ma, 2))))
+                        if has_range else None
+                    )
+
+                    new_bill = Bill(
+                        name=name,
+                        bill_type=row["Type"],
+                        amount=Decimal(str(round(amt, 2))) if not has_range else Decimal("0"),
+                        amount_range=((Decimal(str(round(mi, 2))), Decimal(str(round(ma, 2))))),
+                        randomize=has_range,
+                    )
+                    new_bills_list.append(new_bill)
+                
+                # Update and Persist
+                self.bills = new_bills_list
+                if self.profile:
+                    self.profile.bills = self.bills
+                
+                self.save_current()
+                st.toast("Updated bills")
+                st.rerun()
 
     def load_account(self):
         if Path(".user_profile.json").exists():
