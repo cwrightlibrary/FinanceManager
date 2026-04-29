@@ -1,3 +1,11 @@
+"""
+This module includes models for a financial profile.
+
+The script isn't meant to be run on its own, the `Profile` and
+DebtRepaymentProfile` classes are the main classes to import for
+functionality.
+"""
+
 import copy
 import random
 
@@ -15,7 +23,8 @@ class BankAccount(BaseModel):
 
     Args:
         name (str): The bank or provider
-        account_type (Literal["Checking", "Saving"]): Checking or saving account
+        account_type (Literal["Checking", "Saving"]): Checking or
+            saving account
         amount (Decimal): How much money is in the account
     """
 
@@ -40,24 +49,35 @@ BillType = Literal[
 
 class Bill(BaseModel):
     """
-    Models a monthly bill with the ability to randomize the amount with a range of values.
+    Models a monthly bill with the ability to randomize the amount.
 
-    Args:
+    Attributes:
         name (str): The entity billing the user
         bill_type (BillType): Categorization for the bill
-        randomize (bool): Either a randomly generated range or set price
-        amount (Optional[Decimal]): For setting a final amount
-        amount_range (Optional[tuple[Decimal, Decimal]]): For generating a random amount
+        randomize (bool): Whether to use a randomly generated range or a
+            set price
+        amount (Optional[Decimal]): _The fixed final amount for the bill
+        amount_range (Optional[tuple[Decimal, Decimal]]): The range
+            used for generating a random amount
     """
-
     name: str
     bill_type: BillType
     randomize: bool = False
-    amount: Optional[Decimal] = Field(ge=0, decimal_places=2)
+    amount: Optional[Decimal] = Field(default=None, ge=0, decimal_places=2)
     amount_range: Optional[tuple[Decimal, Decimal]] = None
 
     @model_validator(mode="after")
     def set_amount(self) -> Self:
+        """
+        Assigns the `amount` if `randomize` is `True` and `amount_range`
+        is not empty.
+
+        Raises:
+            ValueError: `amount_range` or `amount` must be populated
+
+        Returns:
+            Self: A `Bill` object
+        """
         if self.randomize and self.amount_range and not self.amount:
             low, high = self.amount_range
             val = random.uniform(float(low), float(high))
@@ -69,11 +89,13 @@ class Bill(BaseModel):
 
         return self
 
-    def change_amount_range(self, new_range: tuple[Decimal, Decimal]) -> None:
-        if self.amount_range:
-            self.amount_range = new_range
-
     def generate_random_amount(self) -> Decimal:
+        """
+        Generates a random range between the low and high values in the `amount_range`.
+
+        Returns:
+            Decimal: The new `amount` value generated from the range
+        """
         amount = Decimal("0.00")
         if self.randomize and self.amount_range:
             low, high = map(float, self.amount_range)
@@ -86,9 +108,10 @@ class Bill(BaseModel):
 
 class Debt(BaseModel):
     """
-    Models debt behavior with details for accurately calculating interest.
+    Models debt behavior with details for accurately calculating
+    interest.
 
-    Args:
+    Attributes:
         name (str): The debt provider
         amount (Decimal): The current, active balance
         apr (Decimal): Debt's APR (e.g. `0.075`)
@@ -101,14 +124,17 @@ class Debt(BaseModel):
     min: Decimal = Field(ge=0, decimal_places=2)
 
     def apply_interest(self):
+        """_Applies interest using `amount` and `apr` values._
+        """
         self.amount *= 1 + self.apr / 12
 
 
 class Income(BaseModel):
     """
-    Creates an income-stream using **bi-weekly** payment from employement.
+    Creates an income-stream using **bi-weekly** payment from
+    employement. The monthly income is a computed property.
 
-    Args:
+    Attributes:
         income_name (str): Preferably the employer
         amount (Decimal): How much money is coming in **bi-weekly**
     """
@@ -125,6 +151,10 @@ class Income(BaseModel):
 
 
 class TaxSystem(BaseModel):
+    """
+    Calculates income taxes and capital gains taxes based on income
+    brackets and capital gains rate.
+    """
     brackets: list[tuple[Decimal, Decimal]] = Field(
         default=[
             (Decimal("0"), Decimal("0.10")),
@@ -137,7 +167,16 @@ class TaxSystem(BaseModel):
 
     capital_gains_rate: Decimal = Decimal("0.15")
 
-    def income_tax(self, annual_income: Decimal):
+    def income_tax(self, annual_income: Decimal) -> Decimal:
+        """
+        Calculates income tax based off of an annual income amount.
+
+        Args:
+            annual_income (Decimal): The annual income in USD
+
+        Returns:
+            Decimal: The income tax amount in USD
+        """
         tax = Decimal("0")
         prev = Decimal("0")
 
@@ -151,12 +190,42 @@ class TaxSystem(BaseModel):
         tax += max(Decimal("0"), annual_income - prev) * self.brackets[-1][1]
         return tax
 
-    def capital_gains_tax(self, gains: Decimal):
+    def capital_gains_tax(self, gains: Decimal) -> Decimal:
+        """
+        Calculates capital gains tax based off of an annual income
+        amount.
+
+        Args:
+            gains (Decimal): The gains in USD
+
+        Returns:
+            Decimal: The capital gains tax in USD
+        """
         return gains * self.capital_gains_rate
 
 
 class Profile(BaseModel):
-    """A full financial object for a user."""
+    """
+    A full financial profile model for users to populate.
+
+    Attributes:
+        name (str): The name of the profile, _e.g., Karl Marx, Karl,_
+            or _Marx_.
+        start_date (datetime): The date this profile was created
+        current_date (datetime): **Not for use by users**, keeps this
+            time up to date for comparison
+        bank_accounts (list[BankAccount]): A list of all accounts of
+            type _Checking_ or _Saving_
+        debts (list[Debt]): A list of all of the debt belonging to the
+            user and their profile
+        income (list[Income]): A list of income streams, primarily used
+            for income in relation to employment
+        bills (list[Bill]): A list of the user's monthly bills
+        tax_system (TaxSystem): Not really for the user to configure
+        capital_gains (Decimal): _Yet to be implemented_
+        debt_repayment (bool): Whether or not this account should be
+            used for calculating loan payment plans
+    """
 
     name: str
     start_date: datetime = Field(default_factory=datetime.today)
@@ -173,12 +242,15 @@ class Profile(BaseModel):
     debt_repayment: bool = False
 
     def total_accounts(self) -> Decimal:
+        """Returns the sum of all bank accounts in the profile."""
         return sum((a.amount for a in self.bank_accounts), Decimal("0"))
 
     def monthly_income(self) -> Decimal:
+        """Returns the sum of all monthly incomes."""
         return sum((i.monthly_amount for i in self.income), Decimal("0"))
 
     def monthly_bills(self) -> Decimal:
+        """Returns the sum of all of the monthly bills."""
         amount = Decimal("0.00")
         for bill in self.bills:
             amount += bill.generate_random_amount()
@@ -186,9 +258,12 @@ class Profile(BaseModel):
         return amount
 
     def total_debt(self) -> Decimal:
+        """Returns the sum of the monthly debt."""
         return sum((i.amount for i in self.debts), Decimal("0"))
 
     def inflate(self, inflation_rate: Decimal) -> None:
+        """Used for simulation and simulating an inflation rate upon
+        all income and bills in the profile."""
         factor = 1 + inflation_rate
 
         for income in self.income:
@@ -204,6 +279,7 @@ class Profile(BaseModel):
     @computed_field
     @property
     def total_tax(self) -> Decimal:
+        """Calculates and returns the total tax for the year."""
         inc_tax = self.tax_system.income_tax(self.monthly_income())
         cap_tax = self.tax_system.capital_gains_tax(self.capital_gains)
 
@@ -211,6 +287,21 @@ class Profile(BaseModel):
 
 
 class DebtRepaymentProfile(Profile):
+    """
+    A subclass `Profile` for calculating loan payment plans.
+
+    Attributes:
+        payment_style (str): As of now, the only style to use is an
+            avalanche method of loan forgiveness (which is yet to be
+            implemented)
+        highest_apr_amount (Decimal): Set an alternate minimum for the
+            loan with the highest APR
+        last_debt_amount (Decimal): Set an alternate minimum for the
+            last loan in `debts`
+        logs (list[dict]): A log of the profile history, used for
+            historical purposes
+        rent (Decimal): The `Bill` in the profile of type _rent_
+    """
     payment_style: str = "Avalanche"
 
     highest_apr_amount: Decimal = Field(default=Decimal("0"), ge=0)
@@ -220,15 +311,19 @@ class DebtRepaymentProfile(Profile):
     rent: Decimal = Decimal("0")
 
     def snapshot_month(self) -> dict:
+        """Returns a model dump of the current state of the profile."""
         return self.model_dump(exclude={"logs"})
 
     def model_post_init(self, context: Any) -> None:
+        """Sets the `rent` attribute automatically."""
         self.logs.append(self.snapshot_month())
         for bill in self.bills:
             if bill.bill_type == "Rent" and bill.amount:
                 self.rent = bill.amount
 
     def simulate_month(self) -> None:
+        """WIP function to simulate a month. Will add more
+        functionality."""
         self.current_date += relativedelta(months=1)
 
         checking_account = next(
@@ -283,6 +378,17 @@ class DebtRepaymentProfile(Profile):
         self,
         avalanche: bool = True,
     ) -> tuple[str, int]:
+        """
+        A simulation to pay off all loans with customized minimums.
+
+        Args:
+            avalanche (bool, optional): Loan payment strategy. Defaults
+                to True.
+
+        Returns:
+            tuple[str, int]: A markdown table of monthly payments and
+                the total months to completely pay off debt
+        """
         highest_apr_loan = float(self.highest_apr_amount)
 
         debts_to_pay = copy.deepcopy(self.debts)
@@ -329,7 +435,8 @@ class DebtRepaymentProfile(Profile):
             bills_total = self.monthly_bills()
             available_funds = income_total - bills_total
 
-            monthly_payments = {debt.name: Decimal("0.00") for debt in debts_to_pay}
+            monthly_payments = {debt.name: Decimal(
+                "0.00") for debt in debts_to_pay}
 
             for debt in debts_to_pay:
                 debt.apply_interest()
@@ -348,7 +455,8 @@ class DebtRepaymentProfile(Profile):
                         if debt.amount > 0:
                             potential_extra = max(
                                 Decimal("0"),
-                                highest_apr_amount - monthly_payments[debt.name],
+                                highest_apr_amount -
+                                monthly_payments[debt.name],
                             )
                             extra_pay = min(
                                 debt.amount, available_funds, potential_extra

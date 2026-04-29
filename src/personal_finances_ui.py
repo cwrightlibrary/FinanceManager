@@ -29,6 +29,7 @@ class AppMode(Enum):
 
 
 class AppState(BaseModel):
+    """Used for handling simple options for the app."""
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     active_mode: AppMode = AppMode.DASHBOARD
@@ -38,6 +39,8 @@ class AppState(BaseModel):
 
 
 class PersonalFinances:
+    """The `streamlit`-powered GUI for the application."""
+
     def __init__(self):
         if "profile" not in st.session_state:
             st.session_state.profile = None
@@ -87,6 +90,7 @@ class PersonalFinances:
         self.load_account()
 
     def start_app(self) -> None:
+        """A custom app runner for the application."""
         with st.sidebar:
             st.logo("🪙")
         dashboard_pg = st.Page(
@@ -98,7 +102,8 @@ class PersonalFinances:
 
         profile_label = "Edit Profile" if self.profile else "Setup Profile"
         profile_icon = "✏️" if self.profile else "➕"
-        profile_pg = st.Page(self.setup_profile, title=profile_label, icon=profile_icon)
+        profile_pg = st.Page(self.setup_profile,
+                             title=profile_label, icon=profile_icon)
         options_pg = st.Page(self.preferences, title="Preferences", icon="⚙️")
         playground_pg = st.Page(self.playground, title="Playground", icon="🛝")
 
@@ -198,7 +203,8 @@ class PersonalFinances:
                 )
                 account_providers_str = str_to_num(account_providers_str)
 
-                st.info(f"You have {account_amount_str} in {account_providers_str}")
+                st.info(
+                    f"You have {account_amount_str} in {account_providers_str}")
 
     def render_income_dashboard(self) -> None:
         if self.profile:
@@ -254,12 +260,14 @@ class PersonalFinances:
                 debtors_str = ""
                 if len(self.profile.debts) > 1:
                     min_payments = [str(d.min) for d in self.debts]
-                    num_debtors = str_to_num(f"{len(self.profile.debts)} debtors")
+                    num_debtors = str_to_num(
+                        f"{len(self.profile.debts)} debtors")
                     debtors_str = f"{num_debtors} and must pay **\\${', \\$'.join(min_payments)}** monthly"
                 else:
                     debtors_str = "one debtor"
 
-                st.error(f"You have {debt_amount_str} of debt from {debtors_str}")
+                st.error(
+                    f"You have {debt_amount_str} of debt from {debtors_str}")
 
     def render_bills_dashboard(self) -> None:
         if self.profile:
@@ -415,7 +423,8 @@ class PersonalFinances:
                             if not pd.isna(row["Bank name"])
                             else "Bank"
                         )
-                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
+                        amt = pd.to_numeric(
+                            row["Amount"], errors="coerce") or 0.0
                         new_accounts_list.append(
                             BankAccount(
                                 name=name,
@@ -469,7 +478,8 @@ class PersonalFinances:
                             if not pd.isna(row["Source of income"])
                             else "Job"
                         )
-                        amt = pd.to_numeric(row["Biweekly pay"], errors="coerce") or 0.0
+                        amt = pd.to_numeric(
+                            row["Biweekly pay"], errors="coerce") or 0.0
                         new_incomes_list.append(
                             Income(
                                 income_name=name,
@@ -530,9 +540,12 @@ class PersonalFinances:
                             if not pd.isna(row["Debtor"])
                             else "Debtor"
                         )
-                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
-                        apr = pd.to_numeric(row["APR"], errors="coerce") or 0.05
-                        mp = pd.to_numeric(row["Min payment"], errors="coerce") or 0.0
+                        amt = pd.to_numeric(
+                            row["Amount"], errors="coerce") or 0.0
+                        apr = pd.to_numeric(
+                            row["APR"], errors="coerce") or 0.05
+                        mp = pd.to_numeric(
+                            row["Min payment"], errors="coerce") or 0.0
                         new_debts_list.append(
                             Debt(
                                 name=name,
@@ -617,9 +630,12 @@ class PersonalFinances:
                             if not pd.isna(row["Billing entity"])
                             else "New Bill"
                         )
-                        amt = pd.to_numeric(row["Amount"], errors="coerce") or 0.0
-                        mi = pd.to_numeric(row["Min amount"], errors="coerce") or 0.0
-                        ma = pd.to_numeric(row["Max amount"], errors="coerce") or 0.0
+                        amt = pd.to_numeric(
+                            row["Amount"], errors="coerce") or 0.0
+                        mi = pd.to_numeric(
+                            row["Min amount"], errors="coerce") or 0.0
+                        ma = pd.to_numeric(
+                            row["Max amount"], errors="coerce") or 0.0
                         has_range = mi > 0 and ma > 0
                         new_bills_list.append(
                             Bill(
@@ -684,8 +700,10 @@ class PersonalFinances:
                     )
 
                     if st.button("Update Options", type="primary"):
-                        self.profile.highest_apr_amount = Decimal(str(set_high_apr))
-                        self.profile.last_debt_amount = Decimal(str(set_last_loan))
+                        self.profile.highest_apr_amount = Decimal(
+                            str(set_high_apr))
+                        self.profile.last_debt_amount = Decimal(
+                            str(set_last_loan))
                         self.save_current()
 
                 if isinstance(self.profile, DebtRepaymentProfile):
@@ -723,8 +741,34 @@ class PersonalFinances:
         with play_area_one:
             st.header("Play Area 1")
 
+            profile_type = "Profile"
+            if isinstance(self.profile, DebtRepaymentProfile):
+                profile_type = "Debt Repayment Profile"
+
+            with st.popover(profile_type):
+                st.help(self.profile)
+
         with play_area_two:
             st.header("Play Area 2")
+
+            messages = st.container(height=200)
+
+            # name, bill_type, amount, randomize, amount_range
+            bill_name = ""
+            bill_type = ""
+            bill_amount = Decimal("0")
+            randomize = False
+            amount_range = None
+
+            messages.subheader("Create bill")
+
+            messages.chat_message("assistant").write(
+                "Enter the name of this bill")
+            
+            if prompt := st.chat_input("Reply"):
+                messages.chat_message("user").write(prompt)
+                bill_name = prompt
+                messages.chat_message("assistant").write(f"What kind of bill is {prompt}?")
 
         with play_area_three:
             st.header("Play Area 3")
@@ -743,5 +787,6 @@ class PersonalFinances:
                 self.bills = self.profile.bills
 
     def run(self) -> None:
-        view_function = self.routes.get(self.state.active_mode, self.render_dashboard)
+        view_function = self.routes.get(
+            self.state.active_mode, self.render_dashboard)
         view_function()
