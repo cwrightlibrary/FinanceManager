@@ -751,24 +751,46 @@ class PersonalFinances:
         with play_area_two:
             st.header("Play Area 2")
 
-            messages = st.container(height=200)
+            if "messages" not in st.session_state:
+                st.session_state.messages = [
+                    {"role": "assistant", "content": "Enter the name of this bill"}]
+            if "bill_step" not in st.session_state:
+                st.session_state.bill_step = "name"
+            if "bill_data" not in st.session_state:
+                st.session_state.bill_data = {}
 
-            # name, bill_type, amount, randomize, amount_range
-            bill_name = ""
-            bill_type = ""
-            bill_amount = Decimal("0")
-            randomize = False
-            amount_range = None
-
-            messages.subheader("Create bill")
-
-            messages.chat_message("assistant").write(
-                "Enter the name of this bill")
+            bill_types = ["Internet", "Utilities", "Groceries", "Phones", "Games",
+                          "Music", "Entertainment", "Daycare", "Rent", "Extra spending"]
+            
+            chat_container = st.container(height=400)
+            for message in st.session_state.messages:
+                chat_container.chat_message(message["role"]).write(message["content"])
             
             if prompt := st.chat_input("Reply"):
-                messages.chat_message("user").write(prompt)
-                bill_name = prompt
-                messages.chat_message("assistant").write(f"What kind of bill is {prompt}?")
+                chat_container.chat_message("user").write(prompt)
+                st.session_state.messages.append({"role": "user", "content": prompt})
+
+                if st.session_state.bill_step == "name":
+                    st.session_state.bill_data["name"] = prompt
+                    response = f"What kind of bill is {prompt}? \n\nOptions: {', '.join(bill_types)}"
+                    st.session_state.bill_step = "type"
+                
+                elif st.session_state.bill_step == "type":
+                    st.session_state.bill_data["type"] = prompt
+                    response = f"What is the amount for the {prompt} bill '{st.session_state.bill_data['name']}'?"
+                    st.session_state.bill_step = "amount"
+                
+                elif st.session_state.bill_step == "amount":
+                    try:
+                        amount = Decimal(prompt.replace("$", ""))
+                        st.session_state.bill_data["amount"] = amount
+                        response = f"✅ Bill Created! \n\n **Name:** {st.session_state.bill_data['name']} \n\n **Type:** {st.session_state.bill_data['type']} \n\n **Amount:** ${amount}"
+                        st.session_state.bill_step = "complete"
+                    except:
+                        response = "Please enter a valid numerical amount (e.g., 50.00)."
+                
+                st.session_state.messages.append({"role": "assistant", "content": response})
+                st.rerun()
 
         with play_area_three:
             st.header("Play Area 3")
