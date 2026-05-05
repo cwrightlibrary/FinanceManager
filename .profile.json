@@ -1,0 +1,174 @@
+{
+    "name": "Chris",
+    "start_date": "2026-05-05T11:33:39.832281",
+    "current_date": "2026-05-05T11:33:39.832281",
+    "bank_accounts": [
+        {
+            "name": "USAA",
+            "account_type": "Checking",
+            "amount": "15000.00"
+        },
+        {
+            "name": "Wells Fargo",
+            "account_type": "Saving",
+            "amount": "30000.00"
+        }
+    ],
+    "debts": [
+        {
+            "name": "Nelnet",
+            "amount": "30000.00",
+            "apr": "0.0500",
+            "min": "200.00"
+        }
+    ],
+    "income": [
+        {
+            "income_name": "Job",
+            "amount": "1200.00",
+            "monthly_amount": "2600.00"
+        }
+    ],
+    "bills": [
+        {
+            "name": "Food",
+            "bill_type": "Groceries",
+            "randomize": true,
+            "amount": "854.24",
+            "amount_range": [
+                "800.00",
+                "1500.00"
+            ]
+        },
+        {
+            "name": "House",
+            "bill_type": "Rent",
+            "randomize": false,
+            "amount": "1600.00",
+            "amount_range": [
+                "0.00",
+                "0.00"
+            ]
+        }
+    ],
+    "tax_system": {
+        "brackets": [
+            [
+                "0",
+                "0.10"
+            ],
+            [
+                "11600",
+                "0.12"
+            ],
+            [
+                "47150",
+                "0.22"
+            ],
+            [
+                "100525",
+                "0.24"
+            ],
+            [
+                "191950",
+                "0.32"
+            ]
+        ],
+        "capital_gains_rate": "0.15"
+    },
+    "capital_gains": "0",
+    "debt_repayment": true,
+    "payment_style": "Avalanche",
+    "highest_apr_amount": "0",
+    "last_debt_amount": "0",
+    "logs": [
+        {
+            "name": "Chris",
+            "start_date": "2026-05-05T11:33:39.832281",
+            "current_date": "2026-05-05T11:33:39.832281",
+            "bank_accounts": [
+                {
+                    "name": "USAA",
+                    "account_type": "Checking",
+                    "amount": "15000.00"
+                },
+                {
+                    "name": "Wells Fargo",
+                    "account_type": "Saving",
+                    "amount": "30000.00"
+                }
+            ],
+            "debts": [
+                {
+                    "name": "Nelnet",
+                    "amount": "30000.00",
+                    "apr": "0.0500",
+                    "min": "200.00"
+                }
+            ],
+            "income": [
+                {
+                    "income_name": "Job",
+                    "amount": "1200.00",
+                    "monthly_amount": "2600.00"
+                }
+            ],
+            "bills": [
+                {
+                    "name": "Food",
+                    "bill_type": "Groceries",
+                    "randomize": true,
+                    "amount": "854.24",
+                    "amount_range": [
+                        "800.00",
+                        "1500.00"
+                    ]
+                },
+                {
+                    "name": "House",
+                    "bill_type": "Rent",
+                    "randomize": false,
+                    "amount": "1600.00",
+                    "amount_range": [
+                        "0.00",
+                        "0.00"
+                    ]
+                }
+            ],
+            "tax_system": {
+                "brackets": [
+                    [
+                        "0",
+                        "0.10"
+                    ],
+                    [
+                        "11600",
+                        "0.12"
+                    ],
+                    [
+                        "47150",
+                        "0.22"
+                    ],
+                    [
+                        "100525",
+                        "0.24"
+                    ],
+                    [
+                        "191950",
+                        "0.32"
+                    ]
+                ],
+                "capital_gains_rate": "0.15"
+            },
+            "capital_gains": "0",
+            "debt_repayment": true,
+            "payment_style": "Avalanche",
+            "highest_apr_amount": "0",
+            "last_debt_amount": "0",
+            "rent": "0",
+            "total_tax": "0.00"
+        }
+    ],
+    "rent": "1600.00",
+    "total_tax": "0.00"
+}
