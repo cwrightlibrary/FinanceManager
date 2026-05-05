@@ -1,0 +1,83 @@
+{
+    "name": "Chris",
+    "start_date": "2026-05-05 10:46:01.871141",
+    "current_date": "2026-05-05 10:46:01.871147",
+    "bank_accounts": [
+        {
+            "Bank name": "Bank",
+            "Type": "Checking",
+            "Amount": 0.0
+        }
+    ],
+    "income": [
+        {
+            "Source of income": "Library",
+            "Bi-weekly pay": 1200.0
+        }
+    ],
+    "bills": [
+        {
+            "Billing entity": "AT&T",
+            "Type": "Internet",
+            "Amount": 80.0,
+            "Min": 0.0,
+            "Max": 0.0
+        },
+        {
+            "Billing entity": "Verizon",
+            "Type": "Phones",
+            "Amount": 60.0,
+            "Min": 0.0,
+            "Max": 0.0
+        },
+        {
+            "Billing entity": "Home",
+            "Type": "Rent",
+            "Amount": 1600.0,
+            "Min": 0.0,
+            "Max": 0.0
+        },
+        {
+            "Billing entity": "Food",
+            "Type": "Groceries",
+            "Amount": 0.0,
+            "Min": 700.0,
+            "Max": 1500.0
+        }
+    ],
+    "debts": [
+        {
+            "Debtor": "Debtor",
+            "Amount": 0.0,
+            "APR": 0.05,
+            "Min payment": 0.0
+        }
+    ],
+    "tax_system": {
+        "brackets": [
+            [
+                "0",
+                "0.10"
+            ],
+            [
+                "11600",
+                "0.12"
+            ],
+            [
+                "47150",
+                "0.22"
+            ],
+            [
+                "100525",
+                "0.24"
+            ],
+            [
+                "191950",
+                "0.32"
+            ]
+        ],
+        "capital_gains_rate": "0.15"
+    },
+    "capital_gains": "0",
+    "debt_repayment": false
+}

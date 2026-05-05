@@ -1,208 +1,234 @@
 import json
 import pandas as pd
 import streamlit as st
-
-from datetime import datetime
 from pathlib import Path
-from typing import Literal
+from datetime import datetime
 
 import src.models as models
 
-ACCOUNT_TYPES: list[Literal["Checking", "Saving"]] = ["Checking", "Saving"]
-BILL_TYPES: list[
-    Literal[
-        "Internet",
-        "Utilities",
-        "Groceries",
-        "Phones",
-        "Games",
-        "Music",
-        "Entertainment",
-        "Daycare",
-        "Rent",
-        "Extra spending",
-    ]
-] = [
-    "Internet",
-    "Utilities",
-    "Groceries",
-    "Phones",
-    "Games",
-    "Music",
-    "Entertainment",
-    "Daycare",
-    "Rent",
-    "Extra spending",
-]
+# --- Configuration ---
+DOLLAR_FORMAT = "$%,.2f"
+CONFIG: dict[str, dict] = {
+    "bank_accounts": {
+        "label": "Bank Accounts",
+        "defaults": {
+            "Bank name": "Bank",
+            "Type": "Checking",
+            "Amount": 0.0,
+            "Remove": False,
+        },
+        "options": {"Type": ["Checking", "Saving"]},
+        "format": {
+            "Amount": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Remove": st.column_config.CheckboxColumn(
+                help="Check to delete this row", default=False
+            ),
+        },
+    },
+    "income": {
+        "label": "Income",
+        "defaults": {"Source of income": "Job", "Bi-weekly pay": 0.0, "Remove": False},
+        "format": {
+            "Bi-weekly pay": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Remove": st.column_config.CheckboxColumn(
+                help="Check to delete this row", default=False
+            ),
+        },
+    },
+    "bills": {
+        "label": "Bills",
+        "defaults": {
+            "Billing entity": "Biller",
+            "Type": "Rent",
+            "Amount": 0.0,
+            "Min": 0.0,
+            "Max": 0.0,
+            "Remove": False,
+        },
+        "options": {
+            "Type": [
+                "Internet",
+                "Utilities",
+                "Groceries",
+                "Phones",
+                "Games",
+                "Music",
+                "Entertainment",
+                "Daycare",
+                "Rent",
+                "Extra spending",
+            ]
+        },
+        "format": {
+            "Amount": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Min": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Max": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Remove": st.column_config.CheckboxColumn(
+                help="Check to delete this row", default=False
+            ),
+        },
+    },
+    "debts": {
+        "label": "Debt",
+        "defaults": {
+            "Debtor": "Debtor",
+            "Amount": 0.0,
+            "APR": 0.05,
+            "Min payment": 0.0,
+            "Remove": False,
+        },
+        "format": {
+            "Amount": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "APR": st.column_config.NumberColumn(
+                format="%.4f", min_value=0.0, default=0.05
+            ),
+            "Min payment": st.column_config.NumberColumn(
+                format=DOLLAR_FORMAT, min_value=0.0, default=0.0
+            ),
+            "Remove": st.column_config.CheckboxColumn(
+                help="Check to delete this row", default=False
+            ),
+        },
+    },
+}
 
-if ".profile.json" not in st.session_state:
-    st.session_state[".profile.json"] = {}
-
-if Path(".profile.json").exists():
-    with open(".profile.json", "r", encoding="utf-8") as file:
-        st.session_state[".profile.json"] = json.load(file)
-
+# --- State initialization ---
 if "profile_name" not in st.session_state:
     st.session_state.profile_name = "Guest"
 
-if "accounts_df" not in st.session_state:
-    accounts_data: dict[str, list[str | bool]] = {
-        "Bank name": ["Bank"],
-        "Type": [ACCOUNT_TYPES[0]],
-        "Amount": ["0.00"],
-        "Remove": [False],
-    }
-    st.session_state.accounts_df = pd.DataFrame(accounts_data)
+# Load existing data
+profile_path = Path(".profile.json")
+initial_data = json.loads(profile_path.read_text()) if profile_path.exists() else {}
 
-if "income_df" not in st.session_state:
-    income_data: dict[str, list[str | bool]] = {
-        "Source of income": ["Job"],
-        "Bi-weekly pay": ["0.00"],
-        "Remove": [False],
-    }
-    st.session_state.income_df = pd.DataFrame(income_data)
-
-if "bills_df" not in st.session_state:
-    bills_data: dict[str, list[str | bool]] = {
-        "Billing entity": ["Biller"],
-        "Type": [BILL_TYPES[0]],
-        "Amount": ["0.00"],
-        "Min amount": ["0.00"],
-        "Max amount": ["0.00"],
-        "Remove": [False],
-    }
-    st.session_state.bills_df = pd.DataFrame(bills_data)
-
-if "debt_df" not in st.session_state:
-    debt_data: dict[str, list[str | bool]] = {
-        "Debtor": ["Debtor"],
-        "Amount": ["0.00"],
-        "APR": ["0.050"],
-        "Min payment": ["0.00"],
-        "Remove": [False],
-    }
-    st.session_state.debt_df = pd.DataFrame(debt_data)
+for key, schema in CONFIG.items():
+    state_key = f"{key}_df"
+    if state_key not in st.session_state:
+        data = initial_data.get(
+            key if key != "accounts" else "bank_accounts", [schema["defaults"]]
+        )
+        st.session_state[state_key] = pd.DataFrame(data)
 
 
-def show_data_editor(data_type: str):
-    _map: dict[str, pd.DataFrame] = {
-        "bank accounts": st.session_state.accounts_df,
-        "income": st.session_state.income_df,
-        "bills": st.session_state.bills_df,
-        "debt": st.session_state.debt_df,
-    }
+# --- Helpers ---
+def render_editor(key):
+    schema = CONFIG[key]
+    state_key = f"{key}_df"
 
-    _session_state = _map[data_type]
-    _config = {
-        "bank accounts": {
-            "Bank name": st.column_config.TextColumn(default="Bank"),
-            "Type": st.column_config.SelectboxColumn(
-                "Account Category", options=ACCOUNT_TYPES, required=True
-            ),
-            "Amount": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.00, min_value=0
-            ),
-            "Remove": st.column_config.CheckboxColumn(default=False),
-        },
-        "income": {
-            "Source of income": st.column_config.TextColumn(default="Job"),
-            "Bi-weekly pay": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.00, min_value=0
-            ),
-            "Remove": st.column_config.CheckboxColumn(default=False),
-        },
-        "bills": {
-            "Billing entity": st.column_config.TextColumn(default="New Bill"),
-            "Type": st.column_config.SelectboxColumn(
-                "Bill Category", options=BILL_TYPES, required=True
-            ),
-            "Amount": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.00, min_value=0
-            ),
-            "Min amount": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.00, min_value=0
-            ),
-            "Max amount": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.00, min_value=0
-            ),
-            "Remove": st.column_config.CheckboxColumn(default=False),
-        },
-        "debt": {
-            "Debtor": st.column_config.TextColumn(default="Debtor"),
-            "Amount": st.column_config.NumberColumn(format="$%,.2f", default=0.00),
-            "APR": st.column_config.NumberColumn(format="%.4f", default=0.050),
-            "Min payment": st.column_config.NumberColumn(
-                format="$%,.2f", default=0.0, min_value=0
-            ),
-            "Remove": st.column_config.CheckboxColumn(default=False),
-        },
-    }
+    st.subheader(f"Manage {schema['label']}")
 
-    st.subheader(f"Add {data_type.lower()}")
+    col_cfg = {}
 
-    edited_df = st.data_editor(
-        _session_state,
-        key=f"{data_type}_editor",
-        hide_index=True,
-        column_config=_config[data_type],
-        width="stretch",
-        num_rows="add",
+    if "options" in schema:
+        for col, opts in schema["options"].items():
+            col_cfg[col] = st.column_config.SelectboxColumn(
+                options=opts, default=opts[0], required=True
+            )
+
+    col_cfg.update(schema.get("format", {}))
+
+    col_cfg["Remove"] = st.column_config.CheckboxColumn(
+        "Remove", help="Check to delete this row", default=False
     )
 
-    button_label = "Update & Remove" if edited_df["Remove"].any() else "Update"
+    for col, val in schema["defaults"].items():
+        if col not in col_cfg:
+            col_cfg[col] = st.column_config.TextColumn(default=val)
 
-    _, button_col = st.columns([3, 1])
+    edited_df = st.data_editor(
+        st.session_state[state_key],
+        key=f"{key}_editor",
+        hide_index=True,
+        column_config=col_cfg,
+        num_rows="add",
+        width="stretch",
+    )
 
-    with button_col:
-        if st.button(button_label, key=f"{data_type}_button", type="primary", width="stretch"):
-            _session_state = edited_df[~edited_df["Remove"]].reset_index(drop=True)
-            st.rerun()
+    if st.button(f"Update {schema['label']}", key=f"btn_{key}"):
+        st.session_state[state_key] = edited_df[~edited_df["Remove"]].reset_index(
+            drop=True
+        )
+        st.rerun()
 
 
+# --- UI layout ---
 st.title("Profile")
 st.caption(f"**{st.session_state.profile_name}'s** profile")
 
-with st.expander("Setup Profile"):
-    name_input_col, name_button_col = st.columns([3, 1], vertical_alignment="bottom")
+with st.expander("Setup Profile", expanded=True):
+    # Name update section
+    new_name = st.text_input("Your name", value=st.session_state.profile_name)
+    if st.button("Update Name") and new_name != st.session_state.profile_name:
+        st.session_state.profile_name = new_name
+        st.rerun()
 
-    with name_input_col:
-        name_input = st.text_input("Your name", value=st.session_state.profile_name, key="name_input_key")
+    for key in CONFIG:
+        render_editor(key)
 
-    with name_button_col:
-        has_changed = st.session_state.name_input_key != st.session_state.profile_name
+if st.button("Create Profile"):
+    payload = {
+        "name": st.session_state.profile_name,
+        "start_date": str(datetime.now()),
+        "current_date": str(datetime.now()),
+        **{
+            k: st.session_state[f"{k}_df"]
+            .drop(columns=["Remove"])
+            .to_dict(orient="records")
+            for k in CONFIG
+        },
+        "tax_system": {
+            "brackets": [
+                ["0", "0.10"],
+                ["11600", "0.12"],
+                ["47150", "0.22"],
+                ["100525", "0.24"],
+                ["191950", "0.32"],
+            ],
+            "capital_gains_rate": "0.15",
+        },
+        "capital_gains": "0",
+        "debt_repayment": False,
+    }
+    # st.session_state.profile = models.Profile(**payload)
+    # st.write(type(st.session_state.profile))
 
-        if st.button(
-            "Update",
-            key="updated_name_button",
-            width="stretch",
-            type="primary",
-            disabled=not has_changed
-        ):
-            st.session_state.profile_name = st.session_state.name_input_key
-            st.rerun()
-        
-    for data_type in ["bank accounts", "income", "bills", "debt"]:
-        show_data_editor(data_type)
-    
-_, button_col = st.columns([3, 1])
+if st.button("Export Profile JSON", type="primary"):
+    payload = {
+        "name": st.session_state.profile_name,
+        "start_date": str(datetime.now()),
+        "current_date": str(datetime.now()),
+        **{
+            k: st.session_state[f"{k}_df"]
+            .drop(columns=["Remove"])
+            .to_dict(orient="records")
+            for k in CONFIG
+        },
+        "tax_system": {
+            "brackets": [
+                ["0", "0.10"],
+                ["11600", "0.12"],
+                ["47150", "0.22"],
+                ["100525", "0.24"],
+                ["191950", "0.32"],
+            ],
+            "capital_gains_rate": "0.15",
+        },
+        "capital_gains": "0",
+        "debt_repayment": False,
+    }
 
-prev_data = False
+    with open("profile.json", "w") as f:
+        json.dump(payload, f, indent=4)
 
-with button_col:
-    if st.button("Update Profile", key="update_profile_button", type="primary", width="stretch"):
-        _name = st.session_state.profile_name
-        _today = datetime.today()
-        _current_date = _today
-        _bank_accounts = st.session_state.accounts_df
-        _income = st.session_state.income_df
-        _bills = st.session_state.bills_df
-        _debt = st.session_state.debt_df
-
-        prev_data = _bank_accounts
-
-        # create the best corresponding json file
-
-if not isinstance(prev_data, bool):
-    for k, v in prev_data.items():
-        st.write(k)
-        st.write(v)
+    st.success("Profile saved to test.json")
